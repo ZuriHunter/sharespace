@@ -2,6 +2,9 @@
   <div class="col-md-6 col-md-offset-3 text-center">
     <h2>Sign Up</h2>
 
+      <%= link_to "Sign In with Facebook", user_omniauth_authorize_path(:facebook), class: 'btn btn-danger' %>
+
+
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render 'partials/devisemessage' %>
       
