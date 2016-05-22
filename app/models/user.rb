@@ -1,11 +1,13 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and 
+  # :confirmable, :lockable, :timeoutable and
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, 
+         :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :omniauthable
 
   validates :fullname, presence: true, length: {maximum: 50}
+
+  has_many :rooms
 
   def self.from_omniauth(auth)
   	user = User.where(email: auth.info.email).first
@@ -22,6 +24,6 @@ class User < ActiveRecord::Base
   			user.password = Devise.friendly_token[0,20]
   		end
   	end
-  	
-  end 
+
+  end
 end
